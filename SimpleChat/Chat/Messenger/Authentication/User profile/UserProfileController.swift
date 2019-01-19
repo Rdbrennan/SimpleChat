@@ -29,7 +29,7 @@ class UserProfileController: UIViewController {
         Done.setTitle("Done", for: .normal)
         Done.center = CGPoint(x: view.center.x, y: view.frame.height - Done.frame.height - 230)
         Done.highlightedColor = UIColor(white: 1.0, alpha: 1.0)
-        Done.defaultColor = primaryColor
+        Done.defaultColor = secondaryColor
         Done.addTarget(self, action: #selector(rightBarButtonDidTap), for: .touchUpInside)
         
         view.addSubview(Done)

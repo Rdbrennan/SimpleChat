@@ -58,6 +58,7 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
   - GTMSessionFetcher/Core (1.2.1)
+  - LBTAComponents (1.0.2)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - Firebase/Storage (~> 4.0)
   - FLAnimatedImage (= 1.0.12)
   - FTPopOverMenu_Swift
+  - LBTAComponents
   - PhoneNumberKit (= 2.1.0)
   - SDWebImage (= 4.3.3)
 
@@ -104,6 +106,7 @@ SPEC REPOS:
     - FTPopOverMenu_Swift
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - LBTAComponents
     - leveldb-library
     - nanopb
     - PhoneNumberKit
@@ -125,12 +128,13 @@ SPEC CHECKSUMS:
   FTPopOverMenu_Swift: f67e0af3935485c1cbcc44b5c92ed530ee32d21d
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PhoneNumberKit: 62003f40ff75315fd3738286558bc365365ac222
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 
-PODFILE CHECKSUM: 6abd9e44a602f99f3a907c7dce366e75425a0c90
+PODFILE CHECKSUM: db6436ce7a284eb60f4b96289ec327ce6ff7cc01
 
 COCOAPODS: 1.5.3

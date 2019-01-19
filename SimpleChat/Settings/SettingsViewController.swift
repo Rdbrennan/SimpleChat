@@ -9,6 +9,8 @@
 import Foundation
 import AccountKit
 import Firebase
+import LBTAComponents
+
 
 class SettingsViewController: UIViewController{
     @IBOutlet var nameLabel: UILabel!
@@ -19,6 +21,16 @@ class SettingsViewController: UIViewController{
     let uid = Auth.auth().currentUser?.uid
     
     @IBOutlet var logoutButton: RoundedButton!
+    
+    let profileImageViewHeight: CGFloat = 170
+    lazy var profileImageView: CachedImageView = {
+        var iv = CachedImageView()
+        iv.backgroundColor = LoginButtons.baseColor
+        iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = profileImageViewHeight / 2
+        iv.clipsToBounds = true
+        return iv
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +46,13 @@ class SettingsViewController: UIViewController{
         
     }
     fileprivate func setupviews(){
-        
+        view.addSubview(profileImageView)
         view.addSubview(logoutButton)
         logoutButton.setTitleColor(UIColor.white, for: .normal)
         logoutButton.setTitle("Logout", for: .normal)
-//        logoutButton.highlightedColor = UIColor(white: 1.0, alpha: 1.0)
-        logoutButton.defaultColor = primaryColor
+        profileImageView.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: nil, topConstant: 16, leftConstant: view.center.x - (profileImageViewHeight/2), bottomConstant: 0, rightConstant: 0, widthConstant: profileImageViewHeight, heightConstant: profileImageViewHeight)
+        
+        logoutButton.defaultColor = primaryColor1
         if UIScreen.main.nativeBounds.height == 1792{
             //Iphones = Xr
             logoutButton.center = CGPoint(x: view.center.x, y: view.frame.height - 150)
@@ -57,21 +70,7 @@ class SettingsViewController: UIViewController{
             logoutButton.center = CGPoint(x: view.center.x, y: view.frame.height - 100)
         }
     }
-    
-//    func  handleFetchFacebookUser() {
-//        if Auth.auth().currentUser != nil {
-//            guard let uid = Auth.auth().currentUser?.uid else {  return }
-//            Database.database().reference().child("users/").child(uid).child("/profile").observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                let name = Auth.auth().currentUser?.displayName
-//                print(name)
-//                self.nameLabel.text = name
-//
-//            }, withCancel: { (err) in
-//                print("canceled")
-//            })
-//        }
-//    }
+
     
     //Fetch User Information
     func  handleFetchFacebookUser() {
@@ -85,7 +84,8 @@ class SettingsViewController: UIViewController{
                 let user = FacebookUser(uid: uid, dictionary: dictionary)
                 
                 self.nameLabel.text = user.name
-                
+                self.profileImageView.loadImage(urlString: user.profileImageUrl)
+
             }, withCancel: { (err) in
                 print("canceled")
             })
@@ -107,11 +107,9 @@ class SettingsViewController: UIViewController{
     @objc func handleSignOutButtonTapped() {
         let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
             do {
-//                self.accountKit.logOut()
+                self.accountKit.logOut()
                 try Auth.auth().signOut()
-                let loginViewController = InitialViewController()
-                let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-//                self.present(loginNavigationController, animated: true, completion: nil)
+
                 self.dismiss(animated: true, completion: nil)
             } catch let err {
                 print("Failed to sign out with error", err)

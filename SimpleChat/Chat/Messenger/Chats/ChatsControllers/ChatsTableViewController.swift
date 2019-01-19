@@ -148,7 +148,7 @@ class ChatsTableViewController: UITableViewController {
 //        destination.users = globalUsers
 //        destination.filteredUsers = globalUsers
 //        navigationController?.pushViewController(destination, animated: true)
-        
+        initialWeclomeMessage2()
     }
     
     //Elon Musk Chat Messenger
@@ -161,10 +161,9 @@ class ChatsTableViewController: UITableViewController {
         let key = childRef.key
         let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
         guard let name = Auth.auth().currentUser?.displayName else { return }
-        let Cooldude = "\u{1F60E}"
         let userObject = [
             key:[
-                "fromId":           "\(admin2UID)",
+                "fromId":           "\(admin3UID)",
                 "messageUID":       key,
                 "seen":             false,
                 "status":           "Delivered",
@@ -180,7 +179,7 @@ class ChatsTableViewController: UITableViewController {
         
         //Add Info to messages folder
         
-        let databaseRef1 = Database.database().reference().child("user-messages/\(uid)/\(admin2UID)")
+        let databaseRef1 = Database.database().reference().child("user-messages/\(uid)/\(admin3UID)")
         
         
         let userObject1 = [

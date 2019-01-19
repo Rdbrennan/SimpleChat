@@ -31,7 +31,7 @@ class EnterVerificationCodeController: UIViewController {
         Verify.setTitle("Verify", for: .normal)
         Verify.center = CGPoint(x: view.center.x, y: view.frame.height - Verify.frame.height - 230)
         Verify.highlightedColor = UIColor(white: 1.0, alpha: 1.0)
-        Verify.defaultColor = primaryColor
+        Verify.defaultColor = primaryColor1
         Verify.addTarget(self, action: #selector(authenticate), for: .touchUpInside)
         
         view.addSubview(Verify)

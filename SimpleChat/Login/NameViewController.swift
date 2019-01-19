@@ -9,15 +9,29 @@
 import Foundation
 import UIKit
 import Firebase
+import AccountKit
 
 class NameViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
+    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var taptoChange: UIButton!
     var activityView:UIActivityIndicatorView!
     var continueButton: RoundedButton!
+    var imagePicker:UIImagePickerController!
+    var accountKit: AKFAccountKit!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if accountKit == nil {
+            //specify AKFResponseType.AccessToken
+            self.accountKit = AKFAccountKit(responseType: AKFResponseType.accessToken)
+            accountKit.requestAccount {
+                (account, error) -> Void in
+            }
+        }
         
         continueButton = RoundedButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         continueButton.setTitleColor(UIColor.white, for: .normal)
@@ -41,22 +55,26 @@ class NameViewController: UIViewController, UITextFieldDelegate{
         
         
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = primaryColor
+        activityView.color = primaryColor1
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = continueButton.center
         
 
-//        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
-//        profileImageView.isUserInteractionEnabled = true
-//        profileImageView.addGestureRecognizer(imageTap)
-//        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
-//        profileImageView.clipsToBounds = true
-//
-//        imagePicker = UIImagePickerController()
-//        imagePicker.allowsEditing = true
-//        imagePicker.sourceType = .photoLibrary
-//        imagePicker.delegate = self
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(imageTap)
+        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+        profileImageView.clipsToBounds = true
+
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
         
+    }
+    
+    @objc func openImagePicker(_ sender:Any) {
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +107,7 @@ class NameViewController: UIViewController, UITextFieldDelegate{
         activityView.center = continueButton.center
     }
     @IBAction func dismissButtonPressed(_ sender: Any) {
+        accountKit.logOut()
         self.navigationController?.popViewController(animated: true)
 
     }
@@ -96,7 +115,6 @@ class NameViewController: UIViewController, UITextFieldDelegate{
     @objc func textFieldChanged(_ target:UITextField) {
         let firstname = firstNameTextField.text
         let lastname = lastNameTextField.text
-
         let formFilled = firstname != nil && firstname != "" && lastname != nil && lastname != ""
         setContinueButton(enabled: formFilled)
     }
@@ -132,6 +150,7 @@ class NameViewController: UIViewController, UITextFieldDelegate{
         guard let name1 = lastNameTextField.text else { return }
         let number = Int.random(in: 0 ... 10000)
         var email = (number.description + "z@gmail.com")
+        guard let image = profileImageView.image else { return }
         let pass = "123456"
         
         setContinueButton(enabled: false)
@@ -168,18 +187,24 @@ class NameViewController: UIViewController, UITextFieldDelegate{
                 if error == nil && user != nil {
                     print("User created!")
                     
+                    self.uploadProfileImage(image) { url in
+                        
+                        if url != nil {
                             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                             changeRequest?.displayName = name
+                            changeRequest?.photoURL = url
+                            
                             changeRequest?.commitChanges { error in
                                 if error == nil {
                                     print("User display name changed!")
                                     
-                                    self.saveProfile(name: name, name1: name1) { success in
+                                    self.saveProfile(name: name, name1: name1, profileImageUrl: url!) { success in
                                         if success {
                                             self.initialWeclomeMessage()
                                             self.initialWeclomeMessage1()
                                             self.initialWeclomeMessage2()
                                             self.updateAdminMessenger()
+                                            self.dismiss(animated: true, completion: nil)
                                         } else {
                                             self.resetForm()
                                         }
@@ -190,7 +215,12 @@ class NameViewController: UIViewController, UITextFieldDelegate{
                                     self.resetForm()
                                 }
                             }
-
+                        } else {
+                            self.resetForm()
+                        }
+                        
+                    }
+                    
                 } else {
                     self.resetForm()
                 }
@@ -210,12 +240,40 @@ class NameViewController: UIViewController, UITextFieldDelegate{
         continueButton.setTitle("Continue", for: .normal)
         activityView.stopAnimating()
     }
-    func saveProfile(name:String, name1:String, completion: @escaping ((_ success:Bool)->())) {
+    
+    func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let storageRef = Storage.storage().reference().child("profileImages/\(uid)")
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
+        
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        storageRef.putData(imageData, metadata: metaData) { metaData, error in
+            if error == nil, metaData != nil {
+                
+                storageRef.downloadURL{ url, error in
+                    completion(url)
+                }
+                
+            }
+            else {
+                completion(nil)
+            }
+        }
+    }
+    
+    func saveProfile(name:String, name1:String, profileImageUrl:URL, completion: @escaping ((_ success:Bool)->())) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let databaseRef = Database.database().reference().child("users/\(uid)/profile")
         
         let userObject = [
             "name":         name + " " + name1,
+            "profileImageUrl": profileImageUrl.absoluteString,
+            "photoURL": profileImageUrl.absoluteString,
+            "thumbnailPhotoURL": profileImageUrl.absoluteString
             
             ] as [String:Any]
         
@@ -422,4 +480,33 @@ class NameViewController: UIViewController, UITextFieldDelegate{
         databaseRef1.updateChildValues(userObject1)
         
     }
+}
+
+extension NameViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
+            self.profileImageView.image = pickedImage
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
 }

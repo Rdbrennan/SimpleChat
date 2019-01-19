@@ -18,5 +18,6 @@ target 'SimpleChat' do
    pod 'FLAnimatedImage' , '1.0.12'
    pod 'FTPopOverMenu_Swift'
    pod 'CropViewController'
+   pod 'LBTAComponents'
 
 end
