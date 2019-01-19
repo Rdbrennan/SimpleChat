@@ -38,8 +38,10 @@ class SettingsViewController: UIViewController{
         print(uid)
         
         logoutButton.addTarget(self, action: #selector(handleSignOutButtonTapped), for: .touchUpInside)
-        handleFetchFacebookUser()
         setupviews()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        handleFetchFacebookUser()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

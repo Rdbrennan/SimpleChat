@@ -16,11 +16,17 @@ import UserNotifications
 let primaryColor1 = Theme1.PRIMARY_COLOR
 let secondaryColor = Theme1.SECONDARY_COLOR
 
+//Admin accounts to log in to
+///For SimpleChat Buddy type into the name input: chat admin
+///For Alex Mata type into the name input: alex mata
+
+//Admin accounts to log in to
+
 let adminUID =  "Dk5qkgKdHmSaTH6iI0qGiHtQJuC2"
 let admin1UID = "8fOPjM4qTsMghRj7i0GaJDW67L72"
 let admin2UID = "7XGAL1ebPtVW4NtNp5igGZtfb5c2"
 let admin3UID = "ESO3H0DGP9bLduQIJKdVyqEMilY2"
-let this = "57fttrGiVIahGnVbcvtx3yiWBai1"
+//let this = "57fttrGiVIahGnVbcvtx3yiWBai1"
 
 let newUser = 0
 

@@ -49,7 +49,7 @@ class UserInfoPhoneNumberTableViewCell: UITableViewCell {
     
     weak var userInfoTableViewController: UserInfoTableViewController?
     
-    let copyNumberImage = UIImage(named: "copyNumber")?.withRenderingMode(.alwaysTemplate)
+    let copyNumberImage = UIImage(named: "")?.withRenderingMode(.alwaysTemplate)
     
     let copy1: UIButton = {
         let copy = UIButton(type: .system)
@@ -63,7 +63,7 @@ class UserInfoPhoneNumberTableViewCell: UITableViewCell {
         let add = UIButton(type: .system )
         add.translatesAutoresizingMaskIntoConstraints = false
         add.imageView?.contentMode = .scaleAspectFit
-        add.setTitle("Add to contacts", for: .normal)
+        add.setTitle("", for: .normal)
         
         return add
     }()
@@ -81,7 +81,7 @@ class UserInfoPhoneNumberTableViewCell: UITableViewCell {
         let contactStatus = UILabel()
         contactStatus.sizeToFit()
         contactStatus.font = UIFont.systemFont(ofSize: 12)
-        contactStatus.text = "This user not in your contacts"
+        contactStatus.text = ""
         contactStatus.textColor = ThemeManager.currentTheme().generalSubtitleColor
         contactStatus.translatesAutoresizingMaskIntoConstraints = false
         
