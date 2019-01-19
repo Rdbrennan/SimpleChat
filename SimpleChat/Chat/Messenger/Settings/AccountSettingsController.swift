@@ -105,7 +105,6 @@ class AccountSettingsController: UITableViewController {
             ThemeManager.applyTheme(theme: theme)
         }
         shouldReloadChatsControllerAfterChangingTheme = true
-        shouldReloadContactsControllerAfterChangingTheme = true
         setColorAccordingToTheme()
         tableView.reloadData()
     }

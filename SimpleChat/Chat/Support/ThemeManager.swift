@@ -206,7 +206,7 @@ enum Theme: Int {
     var secondaryColor: UIColor {
         switch self {
         case .Default:
-            return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
+            return UIColor(red: 34/255.0, green: 193/255.0, blue: 100/255.0, alpha: 1.0)
         case .Dark:
             return UIColor(red: 34.0/255.0, green: 128.0/255.0, blue: 66.0/255.0, alpha: 1.0)
             

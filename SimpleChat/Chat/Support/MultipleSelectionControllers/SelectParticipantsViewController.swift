@@ -48,7 +48,7 @@ class SelectParticipantsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if navigationController?.visibleViewController is GroupProfileTableViewController { return }
+//        if navigationController?.visibleViewController is GroupProfileTableViewController { return }
         deselectAll()
     }
     
@@ -120,13 +120,13 @@ class SelectParticipantsViewController: UIViewController {
     }
     
     func createGroup() {
-        let destination = GroupProfileTableViewController()
-        destination.selectedFlaconUsers = selectedFalconUsers
-        navigationController?.pushViewController(destination, animated: true)
+//        let destination = GroupProfileTableViewController()
+//        destination.selectedFlaconUsers = selectedFalconUsers
+//        navigationController?.pushViewController(destination, animated: true)
     }
     
     var chatIDForUsersUpdate = String()
-    var informationMessageSender = InformationMessageSender()
+//    var informationMessageSender = InformationMessageSender()
     
     func addNewMembers() {
         
@@ -153,7 +153,7 @@ class SelectParticipantsViewController: UIViewController {
                 let userNamesString = selectedUserNames.joined(separator: ", ")
                 let usersTitleString = selectedUserNames.count > 1 ? "users" : "user"
                 let text = "Admin added \(usersTitleString) \(userNamesString) to the group"
-                self.informationMessageSender.sendInformatoinMessage(chatID: self.chatIDForUsersUpdate, membersIDs: membersIDs, text: text)
+//                self.informationMessageSender.sendInformatoinMessage(chatID: self.chatIDForUsersUpdate, membersIDs: membersIDs, text: text)
                 
                 ARSLineProgress.showSuccess()
                 self.navigationController?.view.isUserInteractionEnabled = true

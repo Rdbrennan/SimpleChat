@@ -11,8 +11,8 @@ import UIKit
 
 class IncomingTextMessageCell: BaseMessageCell {
     
-    let textView: FalconTextView = {
-        let textView = FalconTextView()
+    let textView: SimpleChatTextView = {
+        let textView = SimpleChatTextView()
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.backgroundColor = .clear
         textView.isEditable = false

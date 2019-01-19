@@ -36,8 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var window: UIWindow?
     
     let chatsController = ChatsTableViewController()
-    let contactsController = ContactsController()
-    let settingsController = AccountSettingsController()
     
     var orientationLock = UIInterfaceOrientationMask.allButUpsideDown
 

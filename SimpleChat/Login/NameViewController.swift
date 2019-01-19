@@ -264,6 +264,9 @@ class NameViewController: UIViewController, UITextFieldDelegate{
             }
         }
     }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     func saveProfile(name:String, name1:String, profileImageUrl:URL, completion: @escaping ((_ success:Bool)->())) {
         guard let uid = Auth.auth().currentUser?.uid else { return }

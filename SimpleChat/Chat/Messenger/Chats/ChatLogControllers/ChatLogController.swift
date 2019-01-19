@@ -458,7 +458,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewDidDisappear(animated)
         
         if self.navigationController?.visibleViewController is UserInfoTableViewController ||
-            self.navigationController?.visibleViewController is  GroupAdminControlsTableViewController ||
+            self.navigationController?.visibleViewController is  SettingsViewController ||
             topViewController(rootViewController: self) is CropViewController {
             return
         }
@@ -724,22 +724,10 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     @objc func getInfoAction() {
-        
-        if let isGroupChat = conversation?.isGroupChat, isGroupChat {
-            
-            let destination = GroupAdminControlsTableViewController()
-            destination.chatID = conversation?.chatID ?? ""
-            if conversation?.admin != Auth.auth().currentUser?.uid {
-                destination.adminControls = destination.defaultAdminControlls
-            }
-            self.navigationController?.pushViewController(destination, animated: true)
-            // admin group info controller
-        } else {
-            // regular default chat info controller
-            let destination = UserInfoTableViewController()
-            destination.conversationID = conversation?.chatID ?? ""
-            self.navigationController?.pushViewController(destination, animated: true)
-        }
+        // regular default chat info controller
+        let destination = UserInfoTableViewController()
+        destination.conversationID = conversation?.chatID ?? ""
+        self.navigationController?.pushViewController(destination, animated: true)
     }
     
     lazy var inputContainerView: ChatInputContainerView = {

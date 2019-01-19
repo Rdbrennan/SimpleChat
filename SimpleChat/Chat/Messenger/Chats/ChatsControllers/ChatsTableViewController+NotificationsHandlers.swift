@@ -26,7 +26,7 @@ extension ChatsTableViewController {
             
             return controller
         case 2:
-            let controller = appDelegate.settingsController.navigationController?.visibleViewController
+            let controller = self.navigationController?.visibleViewController
             
             return controller
         default: break
@@ -48,7 +48,7 @@ extension ChatsTableViewController {
             
             return controller
         case 2:
-            let controller = appDelegate.settingsController.navigationController
+            let controller = navigationController
             
             return controller
         default: break

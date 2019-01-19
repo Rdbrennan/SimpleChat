@@ -178,11 +178,11 @@ class EnterVerificationCodeController: UIViewController {
         ARSLineProgress.hide()
         
         print("code is correct")
-        let destination = AuthPhoneNumberController()
-        self.dismiss(animated: true){
-        destination.dismiss(animated: true, completion: nil)
+//        let destination = AuthPhoneNumberController()
+//        self.dismiss(animated: true){
+//        destination.dismiss(animated: true, completion: nil)
         
-            }
+//            }
         })
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FalconTextView: UITextView {
+class SimpleChatTextView: UITextView {
     
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         guard let pos = closestPosition(to: point) else { return false }

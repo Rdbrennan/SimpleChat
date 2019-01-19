@@ -108,18 +108,6 @@ class UserInfoTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         let phoneNumberCell = tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! UserInfoPhoneNumberTableViewCell
-        
-        if localPhones.contains(contactPhoneNumber.digits) {
-            phoneNumberCell.add.isHidden = true
-            phoneNumberCell.contactStatus.isHidden = true
-            phoneNumberCell.addHeightConstraint.constant = 0
-            phoneNumberCell.contactStatusHeightConstraint.constant = 0
-        } else {
-            phoneNumberCell.add.isHidden = false
-            phoneNumberCell.contactStatus.isHidden = false
-            phoneNumberCell.addHeightConstraint.constant = 40
-            phoneNumberCell.contactStatusHeightConstraint.constant = 40
-        }
     }
     
     fileprivate func stringTimestamp(onlineStatusObject: AnyObject) -> String {
@@ -169,17 +157,17 @@ class UserInfoTableViewController: UITableViewController {
             let phoneNumberCell = tableView.dequeueReusableCell(withIdentifier: phoneNumberCellIdentifier, for: indexPath) as! UserInfoPhoneNumberTableViewCell
             phoneNumberCell.backgroundColor = ThemeManager.currentTheme().generalBackgroundColor
             
-            if localPhones.contains(contactPhoneNumber.digits) {
-                phoneNumberCell.add.isHidden = true
-                phoneNumberCell.contactStatus.isHidden = true
-                phoneNumberCell.addHeightConstraint.constant = 0
-                phoneNumberCell.contactStatusHeightConstraint.constant = 0
-            } else {
-                phoneNumberCell.add.isHidden = false
-                phoneNumberCell.contactStatus.isHidden = false
-                phoneNumberCell.addHeightConstraint.constant = 40
-                phoneNumberCell.contactStatusHeightConstraint.constant = 40
-            }
+//            if localPhones.contains(contactPhoneNumber.digits) {
+//                phoneNumberCell.add.isHidden = true
+//                phoneNumberCell.contactStatus.isHidden = true
+//                phoneNumberCell.addHeightConstraint.constant = 0
+//                phoneNumberCell.contactStatusHeightConstraint.constant = 0
+//            } else {
+//                phoneNumberCell.add.isHidden = false
+//                phoneNumberCell.contactStatus.isHidden = false
+//                phoneNumberCell.addHeightConstraint.constant = 40
+//                phoneNumberCell.contactStatusHeightConstraint.constant = 40
+//            }
             
             phoneNumberCell.phoneLabel.textColor = ThemeManager.currentTheme().generalTitleColor
             phoneNumberCell.userInfoTableViewController = self

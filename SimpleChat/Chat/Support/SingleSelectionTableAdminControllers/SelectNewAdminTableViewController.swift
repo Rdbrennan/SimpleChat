@@ -15,8 +15,6 @@ class SelectNewAdminTableViewController: UITableViewController {
     
     let falconUsersCellID = "falconUsersCellID"
     
-    weak var adminControlsController: GroupAdminControlsTableViewController?
-    
     var filteredUsers = [User]() {
         didSet {
             configureSections()
@@ -30,7 +28,7 @@ class SelectNewAdminTableViewController: UITableViewController {
     var chatID = String()
     var currentUserName = String()
     var searchBar: UISearchBar?
-    let informationMessageSender = InformationMessageSender()
+//    let informationMessageSender = InformationMessageSender()
     
     fileprivate var isInitialLoad = true
     fileprivate func configureSections() {
@@ -99,7 +97,6 @@ class SelectNewAdminTableViewController: UITableViewController {
     
     @objc func rightBarButtonTapped() {
         ARSLineProgress.ars_showOnView(self.view)
-        adminControlsController?.removeObservers()
         print("rbb")
     }
     
@@ -109,7 +106,7 @@ class SelectNewAdminTableViewController: UITableViewController {
         let reference = Database.database().reference().child("groupChats").child(chatID).child(messageMetaDataFirebaseFolder).child("chatParticipantsIDs").child(uid)
         reference.removeValue { (_, _) in
             let referenceText = "Administrator \(self.currentUserName) left the group"
-            self.informationMessageSender.sendInformatoinMessage(chatID: self.chatID, membersIDs: membersIDs, text: referenceText)
+//            self.informationMessageSender.sendInformatoinMessage(chatID: self.chatID, membersIDs: membersIDs, text: referenceText)
             self.setNewAdmin(membersIDs: membersIDs)
         }
     }
@@ -119,7 +116,7 @@ class SelectNewAdminTableViewController: UITableViewController {
         let adminReference = Database.database().reference().child("groupChats").child(self.chatID).child(messageMetaDataFirebaseFolder)
         adminReference.updateChildValues(["admin": newAdminID]) { (_, _) in
             let newAdminText = "\(newAdminName) is new group administrator"
-            self.informationMessageSender.sendInformatoinMessage(chatID: self.chatID, membersIDs: membersIDs, text: newAdminText)
+//            self.informationMessageSender.sendInformatoinMessage(chatID: self.chatID, membersIDs: membersIDs, text: newAdminText)
             ARSLineProgress.hide()
             self.navigationController?.backToViewController(viewController: ChatLogController.self)
         }
