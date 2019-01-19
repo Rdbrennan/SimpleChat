@@ -36,12 +36,12 @@ class SettingsViewController: UIViewController{
         super.viewDidLoad()
         print(userName)
         print(uid)
-        
         logoutButton.addTarget(self, action: #selector(handleSignOutButtonTapped), for: .touchUpInside)
         setupviews()
     }
     override func viewDidAppear(_ animated: Bool) {
         handleFetchFacebookUser()
+        tabBarController?.tabBar.barTintColor = Theme1.TABBar_COLOR
     }
     
     override func viewWillDisappear(_ animated: Bool) {

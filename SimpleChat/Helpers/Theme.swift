@@ -16,6 +16,7 @@ class Theme1 {
     static let SECONDARY_COLOR = UIColor(r: 34, g: 193, b: 100)
     static let SECONDARY_COLOR1 = UIColor(r: 243, g: 94, b: 94)
     static let TERTIARY_COLOR = UIColor(r: 255, g: 90, b: 95)
+    static let TABBar_COLOR = UIColor(r: 235, g: 235, b: 235)
     
     //HomeDetailText
     static let INPUT_COLOR = UIColor(r: 38, g: 104, b: 202)

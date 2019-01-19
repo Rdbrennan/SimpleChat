@@ -658,7 +658,7 @@ func uploadAvatarForUserToFirebaseStorageUsingImage(_ image: UIImage, quality: C
 
 private var backgroundView: UIView = {
     let backgroundView = UIView()
-    backgroundView.backgroundColor = UIColor.black
+    backgroundView.backgroundColor = UIColor.white
     backgroundView.alpha = 0.8
     backgroundView.layer.cornerRadius = 0
     backgroundView.layer.masksToBounds = true

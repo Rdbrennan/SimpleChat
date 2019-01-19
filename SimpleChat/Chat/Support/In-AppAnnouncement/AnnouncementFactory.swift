@@ -98,7 +98,7 @@ open class ShoutView: UIView {
         
         clipsToBounds = false
         isUserInteractionEnabled = true
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.white.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0.5)
         layer.shadowOpacity = 0.1
         layer.shadowRadius = 0.5

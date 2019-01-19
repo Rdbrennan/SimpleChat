@@ -79,16 +79,18 @@ class ChatsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = "Chats"
         self.navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.barTintColor = secondaryColor
         configureTableView()
         setupSearchController()
         managePresense()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let testSelected = tableView.indexPathForSelectedRow {
+        navigationController?.navigationBar.barTintColor = secondaryColor
+        tabBarController?.tabBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.layer.zPosition = 10
+        if let testSelected =
+            tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: testSelected, animated: true)
         }
         super.viewDidAppear(animated)
@@ -136,6 +138,8 @@ class ChatsTableViewController: UITableViewController {
             navigationItem.leftBarButtonItem = editButtonItem
         let newChatBarButton =  UIBarButtonItem(image: UIImage(named: "composeButton"), style: .done, target: self, action: #selector(newChat))
             navigationItem.rightBarButtonItem = newChatBarButton
+        newChatBarButton.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         extendedLayoutIncludesOpaqueBars = true
         edgesForExtendedLayout = UIRectEdge.top
         tableView.separatorStyle = .none
@@ -143,15 +147,11 @@ class ChatsTableViewController: UITableViewController {
     }
     
     @objc fileprivate func newChat() {
-//        let destination = SelectChatTableViewController()
-//        destination.hidesBottomBarWhenPushed = true
-//        destination.users = globalUsers
-//        destination.filteredUsers = globalUsers
-//        navigationController?.pushViewController(destination, animated: true)
+
         initialWeclomeMessage2()
     }
     
-    //Elon Musk Chat Messenger
+    //Testbot Chat Messenger
     func initialWeclomeMessage2() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         

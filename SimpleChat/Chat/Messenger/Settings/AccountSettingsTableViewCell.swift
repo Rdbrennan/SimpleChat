@@ -65,7 +65,7 @@ class AccountSettingsTableViewCell: UITableViewCell {
     }
     
     fileprivate func setColor() {
-        backgroundColor = ThemeManager.currentTheme().generalBackgroundColor
+        backgroundColor = UIColor.brown
         accessoryView?.backgroundColor = backgroundColor
         title.backgroundColor = backgroundColor
         icon.backgroundColor = backgroundColor

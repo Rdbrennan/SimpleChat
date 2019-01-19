@@ -41,12 +41,12 @@ class GeneralTabBarController: UITabBarController {
             chatsNavigationController.navigationBar.prefersLargeTitles = true
         }
         
-        let chatsImage = UIImage(named:"chat")
+//        let chatsImage = UIImage(named:"chat")
         
 
-        let chatsTabItem = UITabBarItem(title: chatsController.title, image: chatsImage, selectedImage: UIImage(named:""))
+//        let chatsTabItem = UITabBarItem(title: chatsController.title, image: chatsImage, selectedImage: UIImage(named:""))
         
-        chatsController.tabBarItem = chatsTabItem
+//        chatsController.tabBarItem = chatsTabItem
         
         let tabBarControllers = [chatsNavigationController as UIViewController]
         mainController.setViewControllers((tabBarControllers), animated: false)
@@ -79,7 +79,6 @@ class GeneralTabBarController: UITabBarController {
 
 extension GeneralTabBarController: ManageAppearance {
     func manageAppearance(_ chatsController: ChatsTableViewController, didFinishLoadingWith state: Bool) {
-        let isBiometricalAuthEnabled = UserDefaults.standard.bool(forKey: "BiometricalAuth")
-
+        
     }
 }
