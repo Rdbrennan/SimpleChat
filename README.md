@@ -1,5 +1,5 @@
 # SimpleChat
-Chat application with Facebook AccountKit login
+Chat application with Facebook AccountKit login and Firebase Messaging
 
 ### FBAccountKitLogin .............. Firebase Uploader ...... Send Msg, Photo or recording
 
