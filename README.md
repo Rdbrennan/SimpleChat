@@ -1,11 +1,11 @@
 # SimpleChat
 Chat application with Facebook AccountKit login and Firebase Messaging
 
-### Login to reply:
+### Login to reply :
 First name: alex  
 Last name: mata
 
-### OR
+### OR SimpleChat Buddy
 
 First name: chat  
 Last name: admin
