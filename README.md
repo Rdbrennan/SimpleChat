@@ -1,13 +1,13 @@
 # SimpleChat
 Chat application with Facebook AccountKit login and Firebase Messaging
-### Admin Login:
-### First name: alex
-### Last name: mata
+### Login to reply:
+First name: alex
+Last name: mata
 
 ### OR
 
-### First name: chat
-### Last name: admin
+First name: chat
+Last name: admin
 
 
 ### FBAccountKitLogin .............. Firebase Uploader ...... Send Msg, Photo or recording
