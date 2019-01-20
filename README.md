@@ -1,5 +1,6 @@
 # SimpleChat
 Chat application with Facebook AccountKit login and Firebase Messaging
+
 ### Login to reply:
 First name: alex  
 Last name: mata
@@ -8,6 +9,10 @@ Last name: mata
 
 First name: chat  
 Last name: admin
+
+These two accounts have static logins, so the profile image and phone number will not change.
+
+Login with random names to see name change, profile image change, and phone number change.
 
 
 ### FBAccountKitLogin .............. Firebase Uploader ...... Send Msg, Photo or recording
