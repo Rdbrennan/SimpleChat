@@ -15,7 +15,7 @@ These two accounts have static logins, so the profile image and phone number wil
 Login with random names to see name change, profile image change, and phone number change.
 
 
-### FBAccountKitLogin .............. Firebase Uploader ...... Send Msg, Photo or recording
+### FBAccountKitLogin .............. Firebase Uploader ...... Send Msg, Photo, or Recording
 
 ![Menu Views](https://media.giphy.com/media/eeUXL1obbVmt7XQYzx/giphy.gif)
 ![Menu Views](https://media.giphy.com/media/u46g6gbJMFG3NpnzOp/giphy.gif)
