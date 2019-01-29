@@ -1,4 +1,4 @@
-# SimpleChat
+# SimpleChat One Week Code Test
 Chat application with Facebook AccountKit login and Firebase Messaging
 
 ### Login to reply :
